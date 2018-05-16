@@ -8,7 +8,7 @@ module.exports = {
     }
   },
   promisifiedFunctions: {
-    fetch: () => {
+    fetch: (url) => {
       let resolve;
       const promise = new Promise((res) => {
         resolve = res;
@@ -18,7 +18,6 @@ module.exports = {
         callCount += 1;
       }, 1000);
       return promise;
-    },
-    delayedFailure: () => false
+    }
   }
 }

@@ -1,55 +1,68 @@
 const ajax = require('./mockAjax');
 
-// // Traditional callbacks:
-// ajax.callbackFunctions.fetch('http://example.com', (response) => { console.log(response); });
-
-// // Promises:
-// ajax.promisifiedFunctions.fetch('http://example.com').then((response) => {
-// });
-//
-// Async/Await:
-// const response = await ajax.promisifiedFunctions.fetch('http://example.com');
-
-// console.log('getRequestsInOrder, with callbacks:');
-// (function getRequestsInOrder() {
+// Asynchronicity via callbacks:
+// ajax.callbackFunctions.fetch('http://example.com', (response) => {
+//   console.log(response);
 //   ajax.callbackFunctions.fetch('http://example.com', (response) => {
 //     console.log(response);
-//     ajax.callbackFunctions.fetch('http://example2.com', (response) => {
+//     ajax.callbackFunctions.fetch('http://example.com', (response) => {
 //       console.log(response);
-//       ajax.callbackFunctions.fetch('http://example3.com', (response) => {
+//       ajax.callbackFunctions.fetch('http://example.com', (response) => {
 //         console.log(response);
 //       });
 //     });
 //   });
-// })();
+// });
 
-// console.log('getRequestsInOrder, with promises:');
-// (function getRequestsInOrder() {
+// Asynchronicity via promises:
+//
+// ajax.promisifiedFunctions.fetch('http://example.com').then((response) => {
+//   console.log(response);
+// }).then(() => {
 //   ajax.promisifiedFunctions.fetch('http://example.com').then((response) => {
 //     console.log(response);
-//     ajax.promisifiedFunctions.fetch('http://example2.com').then((response) => {
-//       console.log(response);
-//       ajax.promisifiedFunctions.fetch('http://example3.com').then((response) => {
-//         console.log(response);
-//       });
-//     })
-//   });
-// })();
+//     // complicated logic
+//   })
+// });
 
-console.log('getRequestsInOrder, with async/await:');
-(async function getRequestsInOrder() {
-  console.log(await ajax.promisifiedFunctions.fetch('http://example.com'));
-  console.log(await ajax.promisifiedFunctions.fetch('http://example2.com'));
-  console.log(await ajax.promisifiedFunctions.fetch('http://example3.com'));
 
-  const response4 = await ajax.promisifiedFunctions.fetch('foo.bar');
-  console.log(response4);
+async function makeCalls() {
+  // console.log(await ajax.promisifiedFunctions.fetch('sldkfjsldkf'));
+  // console.log(await ajax.promisifiedFunctions.fetch('sldkfjsldkf'));
+  // console.log(await ajax.promisifiedFunctions.fetch('sldkfjsldkf'));
+  // console.log(await ajax.promisifiedFunctions.fetch('sldkfjsldkf'));
+  // console.log(await ajax.promisifiedFunctions.fetch('sldkfjsldkf'));
 
-  const simultaneousRequests = await Promise.all([
-    ajax.promisifiedFunctions.fetch('foo1'),
-    ajax.promisifiedFunctions.fetch('foo2'),
-    ajax.promisifiedFunctions.fetch('foo3'),
-    ajax.promisifiedFunctions.fetch('foo4')
-  ]);
-  simultaneousRequests.forEach((response) => console.log(response));
+  // const responses = await Promise.all([
+  //   ajax.promisifiedFunctions.fetch('sdlkfj'),
+  //   ajax.promisifiedFunctions.fetch('sdlkfj'),
+  //   ajax.promisifiedFunctions.fetch('sdlkfj'),
+  //   ajax.promisifiedFunctions.fetch('sdlkfj')
+  // ]);
+
+  // responses.forEach(response => console.log(response));
+  return Promise.reject('Rejected!');
+
+}
+(async () => {
+// const foo = makeCalls();
+// const bar = await makeCalls();
+
+// makeCalls().then(() => {
+//   console.log('sdlkfjsldkfj');
+// });
+
+try {
+  makeCalls();
+} catch (error) {
+  console.log(error);
+}
+
+// console.log(foo);
+// console.log(bar);
+
+
+
 })();
+
+const makeCalls2 = async () => {};
